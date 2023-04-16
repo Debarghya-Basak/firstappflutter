@@ -15,31 +15,23 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'First App Flutter',
       theme: ThemeData(
-        primarySwatch: Colors.amber,
-        textButtonTheme: const TextButtonThemeData(
-            style: ButtonStyle(
-                backgroundColor: MaterialStatePropertyAll(Colors.amber),
-              foregroundColor: MaterialStatePropertyAll(Colors.white),
-              elevation: MaterialStatePropertyAll(5),
-              shadowColor: MaterialStatePropertyAll(Colors.deepOrange),
-              overlayColor: MaterialStatePropertyAll(Color(0xFFFF9526))
-            )
-        )
-
-      ),
+          primarySwatch: Colors.amber,
+          textButtonTheme: const TextButtonThemeData(
+              style: ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll(Colors.amber),
+                  foregroundColor: MaterialStatePropertyAll(Colors.white),
+                  elevation: MaterialStatePropertyAll(5),
+                  shadowColor: MaterialStatePropertyAll(Colors.deepOrange),
+                  overlayColor: MaterialStatePropertyAll(Color(0xFFFF9526))))),
       darkTheme: ThemeData(
-        primarySwatch: Colors.brown,
-        textButtonTheme: const TextButtonThemeData(
-            style: ButtonStyle(
-              backgroundColor: MaterialStatePropertyAll(Colors.brown),
-              foregroundColor: MaterialStatePropertyAll(Colors.white),
-                elevation: MaterialStatePropertyAll(5),
-                shadowColor: MaterialStatePropertyAll(Colors.grey),
-                overlayColor: MaterialStatePropertyAll(Color(0xFF574634))
-
-            )
-        )
-      ),
+          primarySwatch: Colors.brown,
+          textButtonTheme: const TextButtonThemeData(
+              style: ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll(Colors.brown),
+                  foregroundColor: MaterialStatePropertyAll(Colors.white),
+                  elevation: MaterialStatePropertyAll(5),
+                  shadowColor: MaterialStatePropertyAll(Colors.grey),
+                  overlayColor: MaterialStatePropertyAll(Color(0xFF574634))))),
       home: const HomePage(),
     );
   }
@@ -51,19 +43,18 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('First app flutter'),
-      ),
-      body: Center(
+        appBar: AppBar(
+          title: Text('First app flutter'),
+        ),
+        body: Center(
           child: TextButton(
               child: Text('Test Button'),
-              onPressed: () { print('Button Pressed'); },
-              onHover: (a) { print('Hovering'); }
-          ),
-
-      )
-    );
-
+              onPressed: () {
+                print('Button Pressed');
+              },
+              onHover: (a) {
+                print('Hovering');
+              }),
+        ));
   }
 }
-
