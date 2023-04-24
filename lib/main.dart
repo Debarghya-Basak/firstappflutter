@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'First App Flutter',
       theme: ThemeData(
           primarySwatch: Colors.amber,
@@ -37,23 +38,63 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int currentState = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('First app flutter'),
+          title: const Text('First app flutter'),
+          // shape: Border(
+          //   top: BorderSide(color: Colors.lightBlue.shade50),
+          //   bottom: BorderSide(color: Colors.lightBlue.shade900),
+          //   left: BorderSide(color: Colors.lightBlue.shade50),
+          //   right: BorderSide(color: Colors.lightBlue.shade900),
+          // )
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            print('floating button is pressed');
+          },
+          child: Icon(Icons.add),
+        ),
+        bottomNavigationBar: NavigationBar(
+          destinations: const [
+            NavigationDestination(icon: Icon(Icons.home), label: 'HOME'),
+            NavigationDestination(icon: Icon(Icons.person), label: 'PROFILE'),
+            NavigationDestination(icon: Icon(Icons.menu), label: 'MENU'),
+          ],
+          onDestinationSelected: (int index) {
+            print('$index is the current page index');
+            setState(() {
+              currentState = index;
+            });
+          },
+          selectedIndex: currentState,
+          animationDuration: Duration(seconds: 1),
         ),
         body: Center(
           child: TextButton(
-              child: Text('Test Button'),
+              child: const Text('Test Button'),
               onPressed: () {
                 print('Button Pressed');
               },
+              onLongPress: () {
+                print('Button Loooooooong Pressed');
+              },
+              onFocusChange: (a) {
+                print('Button Released $a');
+              },
               onHover: (a) {
-                print('Hovering');
+                print('Hovering $a');
               }),
         ));
   }
