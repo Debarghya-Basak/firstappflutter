@@ -1,4 +1,6 @@
 import 'dart:math';
+import 'package:firstappflutter/home_page.dart';
+import 'package:firstappflutter/profile_page.dart';
 
 import 'package:flutter/material.dart';
 
@@ -33,69 +35,62 @@ class MyApp extends StatelessWidget {
                   elevation: MaterialStatePropertyAll(5),
                   shadowColor: MaterialStatePropertyAll(Colors.grey),
                   overlayColor: MaterialStatePropertyAll(Color(0xFF574634))))),
-      home: const HomePage(),
+      home: const RootState(),
     );
   }
 }
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class RootState extends StatefulWidget {
+  const RootState({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<RootState> createState() => _RootStateState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _RootStateState extends State<RootState> {
   int currentState = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('First app flutter'),
-          // shape: Border(
-          //   top: BorderSide(color: Colors.lightBlue.shade50),
-          //   bottom: BorderSide(color: Colors.lightBlue.shade900),
-          //   left: BorderSide(color: Colors.lightBlue.shade50),
-          //   right: BorderSide(color: Colors.lightBlue.shade900),
-          // )
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            print('floating button is pressed');
-          },
-          child: Icon(Icons.add),
-        ),
-        bottomNavigationBar: NavigationBar(
-          destinations: const [
-            NavigationDestination(icon: Icon(Icons.home), label: 'HOME'),
-            NavigationDestination(icon: Icon(Icons.person), label: 'PROFILE'),
-            NavigationDestination(icon: Icon(Icons.menu), label: 'MENU'),
-          ],
-          onDestinationSelected: (int index) {
-            print('$index is the current page index');
-            setState(() {
-              currentState = index;
-            });
-          },
-          selectedIndex: currentState,
-          animationDuration: Duration(seconds: 1),
-        ),
-        body: Center(
-          child: TextButton(
-              child: const Text('Test Button'),
-              onPressed: () {
-                print('Button Pressed');
-              },
-              onLongPress: () {
-                print('Button Loooooooong Pressed');
-              },
-              onFocusChange: (a) {
-                print('Button Released $a');
-              },
-              onHover: (a) {
-                print('Hovering $a');
-              }),
-        ));
+      appBar: AppBar(
+        title: const Text('First app flutter'),
+        // shape: Border(
+        //   top: BorderSide(color: Colors.lightBlue.shade50),
+        //   bottom: BorderSide(color: Colors.lightBlue.shade900),
+        //   left: BorderSide(color: Colors.lightBlue.shade50),
+        //   right: BorderSide(color: Colors.lightBlue.shade900),
+        // )
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          print('floating button is pressed');
+        },
+        child: Icon(Icons.add),
+      ),
+      bottomNavigationBar: NavigationBar(
+        destinations: const [
+          NavigationDestination(icon: Icon(Icons.home), label: 'HOME'),
+          NavigationDestination(icon: Icon(Icons.person), label: 'PROFILE'),
+          NavigationDestination(icon: Icon(Icons.menu), label: 'MENU'),
+        ],
+        onDestinationSelected: (int index) {
+          print('$index is the current page index');
+          setState(() {
+            currentState = index;
+            if (currentState == 0) {
+              print('Home page should open');
+            } else if (currentState == 1) {
+              print('Profile page should open');
+            } else {
+              print('Menu page should open');
+            }
+          });
+        },
+        selectedIndex: currentState,
+        animationDuration: Duration(seconds: 1),
+      ),
+      body: HomePage(),
+    );
   }
 }
